@@ -9,5 +9,12 @@ public class PenambahanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penambahan);
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        // Here you want to show the user a dialog box
+        finish();
     }
 }
