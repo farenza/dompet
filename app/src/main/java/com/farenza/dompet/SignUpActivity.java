@@ -3,6 +3,7 @@ package com.farenza.dompet;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,8 +70,6 @@ public class SignUpActivity extends AppCompatActivity{
         mEmailView = (EditText) findViewById(R.id.email);
         mFullnameView = findViewById(R.id.FULL_NAME);
 
-
-
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -91,6 +93,11 @@ public class SignUpActivity extends AppCompatActivity{
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
+        finish();
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -102,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity{
             return;
         }
 
-        // Reset errors.
+        // Reset errors and visible of logo.
         mEmailView.setError(null);
         mPasswordView.setError(null);
         mFullnameView.setError(null);
@@ -149,6 +156,8 @@ public class SignUpActivity extends AppCompatActivity{
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
+            finish();
         }
     }
 

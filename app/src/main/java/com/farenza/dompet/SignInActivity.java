@@ -19,8 +19,14 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -41,11 +47,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class SignInActivity extends AppCompatActivity{
 
     /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
@@ -63,6 +64,8 @@ public class SignInActivity extends AppCompatActivity{
     private View mProgressView;
     private View mLoginFormView;
     private TextView mLinktoSignUp;
+    private AppCompatImageView logo_email;
+    private AppCompatImageButton logo_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,13 @@ public class SignInActivity extends AppCompatActivity{
                     return true;
                 }
                 return false;
+            }
+        });
+        logo_password = findViewById(R.id.IVLOGO_PASSWORD_signin);
+        logo_password.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPasswordView.setTransformationMethod((mPasswordView.getTransformationMethod() == null) ? null : PasswordTransformationMethod.getInstance());
             }
         });
 
@@ -101,7 +111,11 @@ public class SignInActivity extends AppCompatActivity{
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SignInActivity.this,SplashActivity.class));
+        finish();
+    }
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -111,11 +125,9 @@ public class SignInActivity extends AppCompatActivity{
         if (mAuthTask != null) {
             return;
         }
-
-        // Reset errors.
+        // Reset errors and visible of logo.
         mEmailView.setError(null);
         mPasswordView.setError(null);
-
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();

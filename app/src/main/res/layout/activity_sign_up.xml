@@ -22,41 +22,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/IVLOGO_signup"
-            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@mipmap/ic_launcher"/>
+            android:gravity="center">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="-10dp"
+                android:background="@drawable/ic_androidstudioprojects"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/TVSIGNUP_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="Sign Up"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/IVLOGO_signup"
-            android:textColor="@color/putih"/>
+            android:textColor="@color/putih"
+            android:textSize="15sp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/email_signup_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/TVSIGNUP_signup"
             android:background="@drawable/background_form"
             android:paddingLeft="35dp"
-            android:paddingRight="35dp"
+            android:paddingRight="25dp"
             android:paddingTop="10dp"
             android:paddingBottom="45dp"
-            android:gravity="center"
-            android:orientation="vertical"
             android:elevation="20dp"
             android:layout_margin="16dp">
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/SUPPORT_FIRST_SIGNUP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp">
 
                 <EditText
                     android:id="@+id/FULL_NAME"
@@ -69,10 +76,21 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/IVLOGO_PERSON_signup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo_person"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/SUPPORT_FIRST_SIGNUP"
+                android:layout_marginBottom="10dp"/>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/SUPPORT_SECOND_SIGNUP"
+                android:layout_below="@id/SUPPORT_FIRST_SIGNUP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp">
 
                 <EditText
                     android:id="@+id/email"
@@ -85,10 +103,21 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/IVLOGO_EMAIL_signup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo_email"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/SUPPORT_SECOND_SIGNUP"
+                android:layout_marginBottom="6dp"/>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/SUPPORT_THIRD_SIGNUP"
+                android:layout_below="@id/SUPPORT_SECOND_SIGNUP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp">
 
                 <EditText
                     android:id="@+id/password"
@@ -104,10 +133,18 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/IVLOGO_PASSWORD_signup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo_password"
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/SUPPORT_THIRD_SIGNUP"
+                android:layout_marginBottom="3dp"/>
+        </RelativeLayout>
 
-        </LinearLayout>
-
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/email_sign_in_button"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
