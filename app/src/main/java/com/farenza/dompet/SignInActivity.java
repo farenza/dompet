@@ -163,6 +163,8 @@ public class SignInActivity extends AppCompatActivity{
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            startActivity(new Intent(SignInActivity.this,MainActivity.class));
+            finish();
         }
     }
 
